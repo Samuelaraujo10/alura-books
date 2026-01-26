@@ -1,5 +1,5 @@
 import './App.css';
-import Logo from './componentes/Logo'
+import Logo from './componentes/Logo';
 import perfil from './imagens/perfil.svg'
 import sacola from './imagens/sacola.svg'
 

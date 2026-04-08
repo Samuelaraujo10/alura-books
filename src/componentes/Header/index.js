@@ -2,9 +2,10 @@ import Logo from '../Logo';
 import OpcoesHeader from '../OpcoesHeader';
 import IconesHeader from '../IconesHeader';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
-    background-color: rgb(254, 245, 232);
+    background-color: rgb(252, 252, 252);
     display: flex;
     justify-content: center;
 `
@@ -12,7 +13,9 @@ const HeaderContainer = styled.header`
 function Header() {
     return (
         <HeaderContainer>
-            <Logo/>
+            <Link to='/' >
+                <Logo/>
+            </Link>
             <OpcoesHeader/>
             <IconesHeader/>    
       </HeaderContainer>

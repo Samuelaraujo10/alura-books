@@ -2,8 +2,7 @@ import { livros } from "./dadosUltimosLancamentos"
 import styled from "styled-components"
 import { Titulo } from "../Titulo"
 import CardRecomenda from "../CardRecomenda"
-import  imagemLivro  from '../../imagens/livro2.png'
-
+import  imagemLivro  from '../../imagens/livro-orige.jpg'
 
 const UltimosLancamentosContainer = styled.section`
     background-color: #EBECEE;
@@ -19,9 +18,17 @@ const NovosLivrosContainer = styled.div`
     display: flex;
     width: 100%;
     justify-content: center;
-    cursor: pointer;
+    gap: 20px;
+    flex-wrap: wrap;
 `
 
+const ImagemLivro = styled.img`
+    width: 120%;
+    max-width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+`
 
 function UltimosLacamentos() {
     return (
@@ -34,14 +41,13 @@ function UltimosLacamentos() {
                 ÚLTIMOS LANÇAMENTOS
             </Titulo>
             <NovosLivrosContainer>
-            { livros.map( livro => (
-            // eslint-disable-next-line jsx-a11y/alt-text
-            <img src={livro.src} />
-        ))}
+            { livros.map(livro => (
+                <ImagemLivro key={livro.id} src={livro.src} alt={livro.nome} />
+            ))}
         </NovosLivrosContainer>
         <CardRecomenda 
         titulo='Talvez você se interesse por...'
-        tituloLivro='A Evolução das Especies'
+        tituloLivro='A Origem das Espécies'
         autor='Charles Darwin' 
         img={imagemLivro}
         />

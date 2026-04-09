@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import styled from 'styled-components'
 import Input from '../Input'
-import { useState } from 'react'
-import { livros } from './dadosPesquisa'
+import { useEffect, useState } from 'react'
+import { getLivros } from '../../services/livros';
+
 
 const PesquisaContainer = styled.section`
     background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
@@ -44,10 +45,22 @@ const Resultado = styled.div`
 
 function Pesquisa() {
     const [livrosPesquisados, setLivrosPesquisados] = useState([])
+    const [livros, setLivros ] = useState([])
 
-    console.log(livrosPesquisados);
-    
- 
+    useEffect(() => {
+       carregarLivros()
+    }, [])
+
+     async function carregarLivros() {
+            try {
+                const livrosDaAPI = await getLivros()
+                setLivros(livrosDaAPI)
+            } catch (erro) {
+                console.error('Erro ao carregar livros:', erro)
+                setLivros([])
+            }
+        }
+
     return (
         <PesquisaContainer>
             <Titulo>Já sabe por onde começar?</Titulo>
@@ -55,7 +68,10 @@ function Pesquisa() {
             <Input  placeholder="Escreva sua próxima leitura" 
                     onBlur={evento => {
                         const textoDigitado = evento.target.value
-                        const resultadoPesquisa = livros.filter( livro => livro.nome.includes(textoDigitado))
+                        const listaLivros = Array.isArray(livros) ? livros : []
+                        const resultadoPesquisa = textoDigitado
+                            ? listaLivros.filter(livro => livro.nome.includes(textoDigitado))
+                            : []
                         setLivrosPesquisados(resultadoPesquisa)
                     }}
         />

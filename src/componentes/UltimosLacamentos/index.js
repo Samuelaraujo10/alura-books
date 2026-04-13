@@ -47,9 +47,9 @@ function UltimosLacamentos() {
         </NovosLivrosContainer>
         <CardRecomenda 
         titulo='Talvez você se interesse por...'
-        tituloLivro='A Origem das Espécies'
-        autor='Charles Darwin' 
-        img={imagemLivro}
+        tituloLivro={livros[0].nome}
+        autor={livros[0].autor} 
+        img={livros[0].src}
         />
         </UltimosLancamentosContainer>
     )

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Input from '../Input'
 import { useEffect, useState } from 'react'
 import { getLivros } from '../../services/livros';
+import { postFavoritos } from '../../services/favoritos';
 
 
 const PesquisaContainer = styled.section`
@@ -61,6 +62,11 @@ function Pesquisa() {
             }
         }
 
+     async function insereFavoritos(id, nome) {
+        await postFavoritos(id)
+        alert(`livro ${nome} inserido com sucesso`)
+     }
+
     return (
         <PesquisaContainer>
             <Titulo>Já sabe por onde começar?</Titulo>
@@ -76,7 +82,7 @@ function Pesquisa() {
                     }}
         />
         { livrosPesquisados.map(livro => (
-            <Resultado>
+            <Resultado onClick={() => insereFavoritos(livro.id, livro.nome)}>
                 <p>{livro.nome}</p>
                 <img src={livro.src}/>
             </Resultado>

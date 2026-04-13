@@ -8,11 +8,17 @@ import Home from './routes/Home';
 import Favoritos from './routes/Favoritos';
 
 const GlobalStyle = createGlobalStyle`
-body {
+html, body, #root {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -35,7 +41,7 @@ root.render(
      <Header />
       <Routes>
         <Route path='/favoritos' element={<Favoritos/>} />
-        <Route path='/' element={<p><Home /></p>} />
+        <Route path='/' element={<Home />} />
       </Routes> 
     </BrowserRouter>
   </React.StrictMode>
